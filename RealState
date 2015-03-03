@@ -19,6 +19,8 @@ public class RealState extends JFrame
     	RealState form = new RealState();  			// Initialize and instantiate
     	form.setVisible(true);	     				// Displaying the form
         form.setAlwaysOnTop(true);
+    	form.setResizable(false);
+    	
     	
     	//Panel
     	JPanel panel = new JPanel();
@@ -26,12 +28,16 @@ public class RealState extends JFrame
     	panel.setLocation(10, 0);
         form.add(panel);
         
+        
         //Labels
         JLabel lblNxtHouse = new JLabel("Next House Displayed");
         lblNxtHouse.setLocation(20,20);
-        lblNxtHouse.setSize(200,20);
+        lblNxtHouse.setSize(125,15);
         lblNxtHouse.setForeground(Color.blue);
+        lblNxtHouse.setToolTipText("The next house will automaticaly display !");
         panel.add(lblNxtHouse);
+        
+        
         
         JLabel lblLotNo = new JLabel("Lot Number                      :");
         lblLotNo.setLocation(50,70);
@@ -39,8 +45,11 @@ public class RealState extends JFrame
         lblLotNo.setForeground(Color.blue);
         panel.add(lblLotNo);
         
-        
-        
+        TextField tf1 = new TextField();
+        tf1.setText("This is a textbox");
+        tf1.setEditable(true);
+        tf1.setLocation(300, 300);
+        panel.add(tf1);
         
         JLabel lblFname = new JLabel("First Name                       :");
         lblFname.setLocation(50,110);
