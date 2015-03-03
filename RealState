@@ -1,0 +1,106 @@
+import java.awt.*;                        			// AWT Components
+import java.awt.event.*;                  			// AWT Events
+import javax.swing.*;                     			// Swing Components
+
+public class RealState extends JFrame
+{
+    public RealState()
+    {
+        super();
+        this.setSize(400,500);           			// Set the frame size
+        this.setTitle("Real Estate Programme");		// Set Title
+        this.setLocation(500,80);					// Starting Location
+        this.setDefaultCloseOperation(    			// Automatically disposes the
+          JFrame.DISPOSE_ON_CLOSE);       			// frame when it closes
+        
+    }
+    public static void main(String[] args)
+    {
+    	RealState form = new RealState();  			// Initialize and instantiate
+    	form.setVisible(true);	     				// Displaying the form
+        form.setAlwaysOnTop(true);
+    	
+    	//Panel
+    	JPanel panel = new JPanel();
+    	panel.setLayout(null);
+    	panel.setLocation(10, 0);
+        form.add(panel);
+        
+        //Labels
+        JLabel lblNxtHouse = new JLabel("Next House Displayed");
+        lblNxtHouse.setLocation(20,20);
+        lblNxtHouse.setSize(200,20);
+        lblNxtHouse.setForeground(Color.blue);
+        panel.add(lblNxtHouse);
+        
+        JLabel lblLotNo = new JLabel("Lot Number                      :");
+        lblLotNo.setLocation(50,70);
+        lblLotNo.setSize(200,20);
+        lblLotNo.setForeground(Color.blue);
+        panel.add(lblLotNo);
+        
+        
+        
+        
+        JLabel lblFname = new JLabel("First Name                       :");
+        lblFname.setLocation(50,110);
+        lblFname.setSize(200,20);
+        lblFname.setForeground(Color.blue);
+        panel.add(lblFname);
+        
+        JLabel lblLname = new JLabel("Last Name                       :");
+        lblLname.setLocation(50,150);
+        lblLname.setSize(200,20);
+        lblLname.setForeground(Color.blue);
+        panel.add(lblLname);
+        
+        JLabel lblPrice = new JLabel("Price                                 :");
+        lblPrice.setLocation(50,190);
+        lblPrice.setSize(200,20);
+        lblPrice.setForeground(Color.blue);
+        panel.add(lblPrice);
+        
+        JLabel lblSfeet= new JLabel("Square Feet                    :");
+        lblSfeet.setLocation(50,230);
+        lblSfeet.setSize(200,20);
+        lblSfeet.setForeground(Color.blue);
+        panel.add(lblSfeet);
+        
+        JLabel lblNoBedr = new JLabel("Number of Bedrooms  :");
+        lblNoBedr.setLocation(50,270);
+        lblNoBedr.setSize(200,20);
+        lblNoBedr.setForeground(Color.blue);
+        panel.add(lblNoBedr);
+        
+        //Buttons
+        JButton btnReset = new JButton("Reset");
+        btnReset.setLocation(60,325);
+        btnReset.setSize(100,30);
+        panel.add(btnReset); 
+        
+        JButton btnNext = new JButton("Next");
+        btnNext.setLocation(225,325);
+        btnNext.setSize(100,30);
+        panel.add(btnNext); 
+        
+        JButton btnAdd = new JButton("Add");
+        btnAdd.setLocation(60,370);
+        btnAdd.setSize(100,30);
+        panel.add(btnAdd); 
+        
+        JButton btnDel = new JButton("Delete");
+        btnDel.setLocation(225,370);
+        btnDel.setSize(100,30);
+        panel.add(btnDel); 
+        
+        JButton btnClear = new JButton("Clear");
+        btnClear.setLocation(60,415);
+        btnClear.setSize(100,30);
+        panel.add(btnClear);
+        
+        JButton btnFind = new JButton("Find");
+        btnFind.setLocation(225,415);
+        btnFind.setSize(100,30);
+        panel.add(btnFind); 
+    }
+}
