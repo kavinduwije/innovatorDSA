@@ -1,0 +1,488 @@
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+import javax.swing.border.*;
+
+import java.io.*;
+import java.util.LinkedList;
+
+public class RealEstate
+{
+static // The list of SortedList information
+LinkedList<SortedList> ml = new LinkedList<SortedList>();
+// Text fields
+private static JTextField lotText; // Lot number field
+private static JTextField firstText; // First name field
+
+private static JTextField lastText; // Last name field
+private static JTextField priceText; // Price field
+private static JTextField feetText; // Square feet field
+private static JTextField bedText; // Number of bedrooms field
+// Status Label
+private static JLabel statusLabel; // Label for status info
+// Display information about parameter SortedList on screen
+
+private static int getnext(int lotn)
+{
+	int z= ml.size();
+
+	int location = 0;
+	int status=0;
+	int comparedSize= lotn;
+	
+	
+	while (location < z)
+	{    	
+	SortedList h2=(SortedList) ml.get(location);
+	int cuurentlot=h2.lotNumber;
+		if (cuurentlot> comparedSize) {
+			
+		} else if (cuurentlot == comparedSize) {
+		   status=location;	
+		   break;
+		}
+		location++;
+	}
+	if(lotn==0 || location==z )
+		status= 0;
+	return status;
+	
+}
+
+
+private static int delete(int lotnum,LinkedList<SortedList> ml)
+{	
+	int z= ml.size();
+
+	int location = 0;
+	int status=0;
+	
+	int searchableitem= lotnum;
+	while (location <= z)
+	{    
+		if (location == z) {
+        	status=-1;
+        	break;
+		} 
+		else
+		{
+	SortedList h2=(SortedList) ml.get(location);
+	int cuurentlot=h2.lotNumber;
+		
+	if (cuurentlot == searchableitem) 
+	{	   
+		ml.remove(location);
+		reset();
+		status=0;	
+	   break;
+		}
+        
+		}
+		location++;
+	}//while close
+	
+	return status;
+}
+
+private static int search(int lotnum,LinkedList<SortedList> ml)
+{
+	
+	int z= ml.size();
+
+	int location = 0;
+	int status=0;
+	
+	int searchableitem= lotnum;
+	while (location <= z)
+	{    
+		if (location == z) {
+        	status=-1;
+        	break;
+		} 
+		else
+		{
+	SortedList h2=(SortedList) ml.get(location);
+	int cuurentlot=h2.lotNumber;
+		
+	if (cuurentlot == searchableitem) {
+		   
+		SortedList SortedList=new SortedList("x","x",0, 0,0,0);
+    	SortedList=h2;
+    	showSortedList(SortedList);
+		status=0;	
+	   break;
+		}
+        
+		}
+		location++;
+	}//while close
+	
+	return status;
+}
+
+
+private static int insert(SortedList h1, LinkedList<SortedList> ml)
+{
+	
+	int z= ml.size();
+
+	int location = 0;
+	int status=0;
+	
+	int comparedSize= h1.lotNumber;
+	while (location < z)
+	{    
+	
+		
+	SortedList h2=(SortedList) ml.get(location);
+	int cuurentlot=h2.lotNumber;
+		if (cuurentlot> comparedSize) {
+			ml.add(location,h1);
+			status=1;
+			break;
+			
+		} else if (cuurentlot == comparedSize) {
+		   status=0;	
+		   break;
+		}
+        
+		
+		location++;
+	}//while close
+	
+	if (location == z) {
+    	ml.add(location,h1);
+    	status=1;} 
+	return status;
+}
+
+
+
+private static void showSortedList(SortedList SortedList)
+{
+lotText.setText(Integer.toString(SortedList.lotNumber()));
+firstText.setText(SortedList.firstName());
+lastText.setText(SortedList.lastName());
+priceText.setText(Integer.toString(SortedList.price()));
+feetText.setText(Integer.toString(SortedList.squareFeet()));
+bedText.setText(Integer.toString(SortedList.bedRooms()));
+}
+// Returns current screen information as a ListSortedList
+private static SortedList getSortedList()
+{
+String lastName;
+String firstName;
+int lotNumber;
+int price;
+int squareFeet;
+int bedRooms;
+lotNumber = Integer.parseInt(lotText.getText());
+firstName = firstText.getText();
+lastName = lastText.getText();
+price = Integer.parseInt(priceText.getText());
+squareFeet = Integer.parseInt(feetText.getText());
+bedRooms = Integer.parseInt(bedText.getText());
+SortedList SortedList = new SortedList(lastName, firstName, lotNumber, price,
+squareFeet, bedRooms);
+return SortedList;
+}
+// Clears SortedList information from screen
+private static void clearSortedList()
+{
+lotText.setText("");
+firstText.setText("");
+lastText.setText("");
+priceText.setText("");
+feetText.setText("");
+bedText.setText("");
+}
+// Define a button listener
+private static class ActionHandler implements ActionListener
+{
+public void actionPerformed(ActionEvent event)
+// Listener for the button events
+{
+if (event.getActionCommand().equals("Reset"))
+{ // Handles Reset event
+//to be write
+	}
+
+}
+else
+if (event.getActionCommand().equals("Next"))
+{ // Handles Next event
+if (ml.size() == 0)
+statusLabel.setText("list is empty!");
+
+
+else
+	{
+	int lotNumber = Integer.parseInt(lotText.getText());
+	
+	
+	int currentindex=getnext(lotNumber);
+	    currentindex++;
+	    if(currentindex==ml.size())
+	    {
+	    	currentindex=0;
+	    }
+    	showSortedList(ml.get(currentindex));
+    	statusLabel.setText("Next House displayed");
+    }
+
+}
+
+
+else
+if (event.getActionCommand().equals("Add"))
+{ // Handles Add event
+try
+{
+	SortedList h1=getSortedList();
+int status=insert(h1,ml);
+if(status==1)
+	statusLabel.setText("New House added");
+else if(status==0)
+	statusLabel.setText("House already added");
+}
+catch (NumberFormatException badSortedListData)
+{
+// Text field info incorrectly formated
+statusLabel.setText("Number? " + badSortedListData.getMessage());
+}
+}
+else
+if (event.getActionCommand().equals("Delete"))
+{ // Handles Delete event
+try
+{
+
+	int lotNumber;
+	try
+	{
+	     lotNumber = Integer.parseInt(lotText.getText());
+	     
+		int status=delete(lotNumber,ml);
+		if(status==-1)
+			statusLabel.setText("House not found");
+	     
+		else
+			statusLabel.setText("House Deleted");
+	     }
+
+	catch (NumberFormatException badSortedListData)
+	{
+	// Text field info incorrectly formated
+	statusLabel.setText("Number? " + badSortedListData.getMessage());
+	}
+}
+catch (NumberFormatException badSortedListData)
+{
+// Text field info incorrectly formated
+statusLabel.setText("Number? " + badSortedListData.getMessage());
+}
+}
+else
+if (event.getActionCommand().equals("Clear"))
+{ // Handles Clear event
+clearSortedList();
+statusLabel.setText(ml.size() + " House(s) on list");
+} 
+else
+if (event.getActionCommand().equals("Find"))
+{ // Handles Find event
+int lotNumber;
+try
+{
+     lotNumber = Integer.parseInt(lotText.getText());
+     
+	int status=search(lotNumber,ml);
+	if(status==-1)
+		statusLabel.setText("House not found");
+     
+	else
+		statusLabel.setText("House found");
+     }
+
+catch (NumberFormatException badSortedListData)
+{
+// Text field info incorrectly formated
+statusLabel.setText("Number? " + badSortedListData.getMessage());
+}
+}
+}
+}
+@SuppressWarnings("deprecation")
+public static void main(String args[]) throws IOException
+{
+//char command;
+//int length;
+JLabel blankLabel; // To use up one frame slot
+JLabel lotLabel; // Labels for input fields
+JLabel firstLabel;
+JLabel lastLabel;
+JLabel priceLabel;
+JLabel feetLabel;
+JLabel bedLabel;
+JButton reset; // Reset button
+JButton next; // Next button
+JButton add; // Add button
+JButton delete; // Delete button
+JButton clear; // Clear button
+JButton find; // Find button
+ActionHandler action; // Declare listener
+// Declare/Instantiate/Initialize display frame
+final JFrame displayFrame = new JFrame();
+displayFrame.setTitle("Real Estate Program");
+displayFrame.setSize(350,443);
+displayFrame.setAlwaysOnTop(true);
+displayFrame.setLocation(500,80);
+displayFrame.setResizable(false);
+displayFrame.addWindowListener(new WindowAdapter() // handle window
+// closing
+{
+public void windowClosing(WindowEvent event)
+{
+SortedList SortedList;
+displayFrame.dispose(); // Close window
+try
+{
+// Store info from list into SortedList file
+ListHouse.rewrite();
+
+
+int length = ml.size();
+for (int counter = 0; counter < length; counter++)
+{
+	SortedList=ml.get(counter);
+ListHouse.putToFile(SortedList);
+}
+ListHouse.close();
+}
+catch (IOException fileCloseProblem)
+{
+System.out.println("Exception raised concerning the SortedList info file "
++ "upon program termination");
+}
+System.exit(0); // Quit the program
+}
+});
+// Instantiate content pane and information panel
+Container contentPane = displayFrame.getContentPane();
+JPanel infoPanel = new JPanel();
+// Instantiate/initialize labels, and text fields
+statusLabel = new JLabel("", JLabel.CENTER);
+statusLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+statusLabel.setBounds(10, 11, 314, 26);
+statusLabel.setForeground(Color.blue);
+statusLabel.setBorder(new LineBorder(Color.DARK_GRAY));
+statusLabel.setToolTipText("Display Current Activity");
+blankLabel = new JLabel("");
+blankLabel.setBounds(167, 1, 167, 36);
+lotLabel = new JLabel("Lot Number: ", JLabel.RIGHT);
+lotLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+lotLabel.setBounds(0, 44, 167, 29);
+lotLabel.setForeground(Color.blue);
+lotText = new JTextField("", 15);
+lotText.setBounds(167, 44, 157, 29);
+firstLabel = new JLabel("First Name: ", JLabel.RIGHT);
+firstLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+firstLabel.setBounds(0, 80, 167, 29);
+firstLabel.setForeground(Color.blue);
+firstText = new JTextField("", 15);
+firstText.setBounds(167, 80, 157, 29);
+lastLabel = new JLabel("Last Name: ", JLabel.RIGHT);
+lastLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+lastLabel.setBounds(0, 116, 167, 29);
+lastLabel.setForeground(Color.blue);
+lastText = new JTextField("", 15);
+lastText.setBounds(167, 116, 157, 29);
+priceLabel = new JLabel("Price: ", JLabel.RIGHT);
+priceLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+priceLabel.setBounds(0, 152, 167, 29);
+priceLabel.setForeground(Color.blue);
+priceText = new JTextField("", 15);
+priceText.setBounds(167, 156, 157, 25);
+feetLabel = new JLabel("Square Feet: ", JLabel.RIGHT);
+feetLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+feetLabel.setBounds(0, 188, 167, 29);
+feetLabel.setForeground(Color.blue);
+feetText = new JTextField("", 15);
+feetText.setBounds(167, 188, 157, 29);
+bedLabel = new JLabel("Number of Bedrooms: ", JLabel.RIGHT);
+bedLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+bedLabel.setBounds(0, 228, 167, 25);
+bedLabel.setForeground(Color.blue);
+bedText = new JTextField("", 15);
+bedText.setBounds(167, 224, 157, 29);
+// Instantiate/register buttons
+reset = new JButton("Reset");
+reset.setBounds(10, 264, 144, 36);
+reset.setToolTipText("Reset List");
+next = new JButton("Next");
+next.setBounds(177, 264, 147, 36);
+next.setToolTipText("Go to next record");
+add = new JButton("Add");
+add.setBounds(10, 311, 144, 36);
+add.setToolTipText("Insert Record");
+delete = new JButton("Delete");
+delete.setBounds(176, 311, 148, 36);
+delete.setToolTipText("Delete Record");
+clear = new JButton("Clear");
+clear.setBounds(10, 358, 144, 36);
+clear.setToolTipText("Clear Text Fields");
+find = new JButton("Find");
+find.setBounds(177, 358, 147, 36);
+find.setToolTipText("Search Records");
+// Instantiate/register button listeners
+action = new ActionHandler();
+reset.addActionListener(action);
+next.addActionListener(action);
+add.addActionListener(action);
+delete.addActionListener(action);
+clear.addActionListener(action);
+find.addActionListener(action);
+// Load info from SortedList file into list
+SortedList h1;
+ListHouse.reset();
+while (ListHouse.moreHouses())
+{
+h1 = ListHouse.getNextHouse();
+insert(h1,ml);
+}
+// If possible insert info about first SortedList into text fields
+
+if (ml.size() != 0)
+{
+h1=ml.getFirst();	
+showSortedList(h1);
+}
+infoPanel.setLayout(null);
+// Update status
+statusLabel.setText(ml.size() + " House(s) on list ");
+infoPanel.add(statusLabel);
+infoPanel.add(blankLabel);
+infoPanel.add(lotLabel);
+infoPanel.add(lotText);
+infoPanel.add(firstLabel);
+infoPanel.add(firstText);
+infoPanel.add(lastLabel);
+infoPanel.add(lastText);
+infoPanel.add(priceLabel);
+infoPanel.add(priceText);
+infoPanel.add(feetLabel);
+infoPanel.add(feetText);
+infoPanel.add(bedLabel);
+infoPanel.add(bedText);
+infoPanel.add(reset);
+infoPanel.add(next);
+infoPanel.add(add);
+infoPanel.add(delete);
+infoPanel.add(clear);
+infoPanel.add(find);
+// Set up and show the frame
+contentPane.add(infoPanel);
+displayFrame.show();
+}
+}
