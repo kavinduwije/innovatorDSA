@@ -26,10 +26,12 @@ private static JLabel statusLabel; // Label for status info
 
 private static int getnext(int lotn)
 {
+
+//Assigning values to getnext variables
 	int z= ml.size();
 
 	int location = 0;
-	int status=0;
+	int status= 0;
 	int comparedSize= lotn;
 	
 	
