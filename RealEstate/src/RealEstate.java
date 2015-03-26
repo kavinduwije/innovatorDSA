@@ -12,8 +12,8 @@ public class RealEstate {
 	protected Shell shlRealEstateProgram;
 	private Text lotText;
 	private Text firstText;
-	private Text lastText;
-	private Text priceText;
+	private Text lastText; 
+	private Text priceText; 
 	private Text feetText;
 	private Text bedText;
 
@@ -21,7 +21,7 @@ public class RealEstate {
 	 * Launch the application.
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		try {
 			RealEstate window = new RealEstate();
 			window.open();
