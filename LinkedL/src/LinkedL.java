@@ -20,7 +20,7 @@ public  House(String lname, String fname, int ln,int p, int csf,int bedrooms) {
   @Override
 	public int compareTo(House o) {
 		int comparedSize = o.lotNumber;
-		if (this.lotNumber > comparedSize) {
+		if (this.lotNumber > comparedSize) { 
 			return 1;
 		} else if (this.lotNumber == comparedSize) {
 			return 0;
