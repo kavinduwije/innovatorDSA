@@ -4,11 +4,11 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import java.io.*;
+import java.io.*; 
 import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.ListIterator; 
 
-public class RealEstate
+public class RealEstate 
 {
 static // The list of house information
 LinkedList<House> ml = new LinkedList<House>();
