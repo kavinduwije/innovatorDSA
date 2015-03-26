@@ -6,7 +6,7 @@ public class RealState extends JFrame
 {
     public RealState()
     {
-        super();
+        super(); 
         this.setSize(400,500);           			// Set the frame size
         this.setTitle("Real Estate Programme");		// Set Title
         this.setLocation(500,80);					// Starting Location
@@ -19,7 +19,7 @@ public class RealState extends JFrame
     	RealState form = new RealState();  			// Initialize and instantiate
     	form.setVisible(true);	     				// Displaying the form
         form.setAlwaysOnTop(true);
-    	form.setResizable(false);
+    	form.setResizable(false);   
     	
     	
     	//Panel
