@@ -2,9 +2,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.*; 
 
-import java.io.*;
+import java.io.*; 
 import java.util.LinkedList;
 
 public class RealEstate
@@ -13,7 +13,7 @@ static // The list of SortedList information
 LinkedList<SortedList> ml = new LinkedList<SortedList>();
 // Text fields
 private static JTextField lotText; // Lot number field
-private static JTextField firstText; // First name field
+private static JTextField firstText; // First name field 
 
 private static JTextField lastText; // Last name field
 private static JTextField priceText; // Price field
@@ -26,7 +26,7 @@ private static JLabel statusLabel; // Label for status info
 private static int getnext(int lotn)
 {
 	int z= ml.size();
-
+ 
 	int location = 0;
 	int status=0;
 	int comparedSize= lotn;
