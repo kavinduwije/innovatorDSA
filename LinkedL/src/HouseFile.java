@@ -5,7 +5,7 @@ public class HouseFile
 private static BufferedReader inFile;
 private static PrintWriter outFile;
 private static boolean inFileOpen = false;
-private static boolean outFileOpen = false;
+private static boolean outFileOpen = false; 
 private static String inString =""; // Holds "next" line from file
 // Equals null if at end of file
 public static void reset() throws IOException
