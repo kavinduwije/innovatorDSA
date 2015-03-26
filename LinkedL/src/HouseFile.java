@@ -20,8 +20,8 @@ inString = inFile.readLine();
 public static void rewrite() throws IOException
 // Reset file for writing
 {
-if (inFileOpen) inFile.close();
-if (outFileOpen) outFile.close();
+if (inFileOpen) inFile.close();  
+if (outFileOpen) outFile.close();  
 outFile = new PrintWriter(new FileWriter("house.dat"));
 outFileOpen = true;
 }
