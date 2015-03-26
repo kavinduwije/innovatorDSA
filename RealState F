@@ -42,6 +42,7 @@ private static int getnext(int lotn)
 		   status=location;	
 		   break;
 		}
+	
 		location++;
 	}
 	if(lotn==0 || location==z )
