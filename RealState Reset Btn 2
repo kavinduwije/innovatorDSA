@@ -476,7 +476,7 @@ action = new ActionHandler();
 reset.addActionListener(action);
 next.addActionListener(action);
 add.addActionListener(action);
-delete.addActionListener(action);
+delete.addActionListener(action);  
 clear.addActionListener(action);
 find.addActionListener(action);
 // Load info from house file into list
