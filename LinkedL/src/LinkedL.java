@@ -5,14 +5,14 @@ class House implements Comparable<House>{
 	private String firstName;
 	int lotNumber;
 	private int price;
-	private int squareFeet;
-	private int bedRooms;
+	private int squareFeet; 
+	private int bedRooms; 
 
 public  House(String lname, String fname, int ln,int p, int csf,int bedrooms) {
     lastName= lname;
     firstName = fname;
     lotNumber = ln;
-    price = p;
+    price = p; 
     squareFeet = csf;
     bedRooms=bedrooms;
   }
